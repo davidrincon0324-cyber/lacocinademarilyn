@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de control — La Cocina de Marilyn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Paleta: 3 tonos de azul + blanco */
+  --crema: #EAF4FF;
+  --crema-2: #D6EAFF;
+  --papel: #FFFFFF;
+  --tinta: #0B3D91;
+  --tinta-suave: #4A6B8A;
+  --tomate: #2B6CB0;
+  --tomate-osc: #0B3D91;
+  --mostaza: #CFE8FF;
+  --verde: #2B6CB0;
+  --verde-osc: #0B3D91;
+  --gris-apagado: #6B8AA8;
+  --linea: rgba(11,61,145,0.14);
+  --sombra: 0 14px 30px -12px rgba(11,61,145,0.18);
+  --radio: 16px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background: var(--crema);
+  color: var(--tinta);
+  font-family: 'Manrope', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+header{
+  background: var(--tinta);
+  color: var(--papel);
+  padding: 1.8rem 1.5rem;
+  border-bottom: 6px solid var(--tomate);
+}
+.header-inner{
+  max-width: 980px;
+  margin: 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.brand-mini{
+  font-family:'Fraunces', serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+.brand-mini span{ color: var(--mostaza); }
+.badge-admin{
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--tomate);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.header-stats{
+  display:flex;
+  gap: 1.6rem;
+}
+.hstat{ text-align:right; }
+.hstat .n{ font-family:'Fraunces', serif; font-weight:800; font-size: 1.4rem; line-height:1; }
+.hstat .l{ font-size: 0.7rem; color: rgba(255,250,240,0.6); text-transform:uppercase; letter-spacing:0.04em; margin-top:2px;}
+
+main{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2rem 1.3rem;
+}
+
+.toolbar{
+  display:flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items:center;
+  margin-bottom: 1.6rem;
+  padding: 1rem 1.1rem;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+}
+.toolbar input[type="text"]{
+  flex: 1;
+  min-width: 180px;
+  border: 1.5px solid var(--linea);
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  font-family:'Manrope';
+  font-size: 0.9rem;
+  background: var(--crema);
+  color: var(--tinta);
+}
+.tb-btn{
+  border: 1.5px solid var(--linea);
+  background: var(--papel);
+  color: var(--tinta-suave);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  cursor:pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+.tb-btn:hover{ border-color: var(--tomate); color: var(--tomate-osc); }
+.tb-btn.danger:hover{ border-color: var(--tomate); background: var(--tomate); color: #fff; }
+.tb-btn.primary{
+  background: var(--verde);
+  border-color: var(--verde);
+  color: #fff;
+}
+.tb-btn.primary:hover{ background: var(--verde-osc); }
+
+.save-note{
+  font-size: 0.78rem;
+  color: var(--verde-osc);
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display:flex;
+  align-items:center;
+  gap: 5px;
+}
+.save-note.show{ opacity: 1; }
+
+.group{
+  margin-bottom: 2rem;
+}
+.group-head{
+  display:flex;
+  align-items:center;
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--linea);
+}
+.group-head h2{
+  font-family:'Fraunces', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin: 0;
+  color: var(--tomate-osc);
+}
+.group-head .gcount{
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--tinta-suave);
+  background: var(--crema-2);
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+.group-head .gtoggle{
+  margin-left:auto;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--tomate);
+  cursor: pointer;
+  background:none;
+  border:none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.product-row{
+  display:grid;
+  grid-template-columns: 44px 1fr auto 220px 90px;
+  align-items:center;
+  gap: 0.9rem;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 0.55rem;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+.product-row.disabled{
+  opacity: 0.5;
+  border-color: var(--linea);
+}
+.product-row.disabled .p-name{ text-decoration: line-through; color: var(--gris-apagado); }
+
+.p-emoji{
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: var(--crema-2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 1.2rem;
+  flex: 0 0 auto;
+}
+.p-info{ min-width: 0; }
+.p-name{
+  font-weight: 700;
+  font-size: 0.93rem;
+  line-height: 1.25;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.p-price{
+  font-size: 0.75rem;
+  color: var(--tinta-suave);
+  margin-top: 1px;
+}
+.p-status{
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.p-status.on{ background: rgba(74,122,63,0.14); color: var(--verde-osc); }
+.p-status.off{ background: rgba(11,61,145,0.12); color: var(--tomate-osc); }
+
+.p-connector{
+  display:flex;
+  align-items:center;
+  gap: 6px;
+  min-width: 0;
+}
+.p-connector input{
+  width: 100%;
+  border: 1.5px dashed var(--linea);
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  background: var(--crema);
+  color: var(--tinta-suave);
+}
+.p-connector input::placeholder{
+  color: var(--gris-apagado);
+  font-style: italic;
+}
+.p-connector input:focus{
+  outline: none;
+  border-color: var(--mostaza);
+  border-style: solid;
+  color: var(--tinta);
+}
+.p-connector input.has-value{
+  border-style: solid;
+  border-color: var(--verde);
+  color: var(--verde-osc);
+  font-weight: 600;
+}
+
+.switch{
+  position: relative;
+  width: 46px;
+  height: 26px;
+  flex: 0 0 auto;
+  justify-self: end;
+}
+.switch input{ opacity:0; width:0; height:0; }
+.slider{
+  position:absolute;
+  cursor:pointer;
+  inset:0;
+  background: var(--gris-apagado);
+  border-radius: 999px;
+  transition: 0.2s ease;
+}
+.slider::before{
+  content:"";
+  position:absolute;
+  width: 20px; height: 20px;
+  left: 3px; bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.switch input:checked + .slider{ background: var(--verde); }
+.switch input:checked + .slider::before{ transform: translateX(20px); }
+
+.empty-state{
+  text-align:center;
+  padding: 3rem 1rem;
+  color: var(--tinta-suave);
+}
+
+@media (max-width: 760px){
+  .product-row{
+    grid-template-columns: 38px 1fr auto;
+    grid-template-areas:
+      "emoji name switch"
+      "status connector connector";
+    row-gap: 8px;
+  }
+  .p-emoji{ grid-area: emoji; }
+  .p-info{ grid-area: name; }
+  .switch{ grid-area: switch; }
+  .p-status{ grid-area: status; justify-self: start; }
+  .p-connector{ grid-area: connector; }
+  .header-stats{ gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand-mini">La Cocina de <span>Marilyn</span> <span class="badge-admin">Panel de control</span></div>
+    <div class="header-stats">
+      <div class="hstat"><div class="n" id="statActivos">0</div><div class="l">Activos</div></div>
+      <div class="hstat"><div class="n" id="statInactivos">0</div><div class="l">Inactivos</div></div>
+      <div class="hstat"><div class="n" id="statConectados">0</div><div class="l">Conectados</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="toolbar">
+    <input type="text" id="searchBox" placeholder="Buscar producto...">
+    <button class="tb-btn primary" id="enableAllBtn">Activar todo</button>
+    <button class="tb-btn danger" id="disableAllBtn">Desactivar todo</button>
+    <button class="tb-btn" id="resetBtn">Restablecer</button>
+    <span class="save-note" id="saveNote">✓ Guardado</span>
+  </div>
+
+  <div id="groupsContainer"></div>
+</main>
+
+<script>
+const GROUP_LABELS = {
+  'sopas': { label: 'Sopas', icon: '🥣' },
+  'principios': { label: 'Principios', icon: '🍛' },
+  'proteinas': { label: 'Proteínas', icon: '🍖' },
+  'acompanamientos': { label: 'Acompañamientos', icon: '🍚' },
+  'jugos': { label: 'Jugos', icon: '🥤' },
+  'especiales': { label: 'Plato especial', icon: '⭐' },
+  'acomp-especial': { label: 'Acompañamientos del especial', icon: '🍟' }
+};
+
+const PRODUCTOS = [
+  {"id":"sopa-ajiaco","grupo":"sopas","nombre":"Sopa de ajiaco","emoji":"🍲"},
+  {"id":"sopa-arroz-leche","grupo":"sopas","nombre":"Arroz de leche","emoji":"🥛"},
+
+  {"id":"princ-frijol","grupo":"principios","nombre":"Frijol","emoji":"🫘"},
+  {"id":"princ-arveja","grupo":"principios","nombre":"Arveja guisada","emoji":"🟢"},
+  {"id":"princ-lenteja","grupo":"principios","nombre":"Lenteja","emoji":"🟤"},
+  {"id":"princ-pasta-jamon","grupo":"principios","nombre":"Pasta en salsa de jamón","emoji":"🍝"},
+  {"id":"princ-cubios","grupo":"principios","nombre":"Cubios guisados","emoji":"🥔"},
+  {"id":"princ-torta-platano","grupo":"principios","nombre":"Torta de plátano","emoji":"🍌"},
+
+  {"id":"prot-callo","grupo":"proteinas","nombre":"Callo guisado","emoji":"🍲"},
+  {"id":"prot-res-asada","grupo":"proteinas","nombre":"Res asada","emoji":"🥩"},
+  {"id":"prot-cerdo-asado","grupo":"proteinas","nombre":"Cerdo asado","emoji":"🥓"},
+  {"id":"prot-higado","grupo":"proteinas","nombre":"Hígado encebollado","emoji":"🧅"},
+  {"id":"prot-pernil-dorada","grupo":"proteinas","nombre":"Pierna pernil en dorada","emoji":"🍗"},
+  {"id":"prot-pernil-sudada","grupo":"proteinas","nombre":"Pierna pernil sudada","emoji":"🍗"},
+  {"id":"prot-goulash","grupo":"proteinas","nombre":"Carne en goulash","emoji":"🍖"},
+
+  {"id":"acomp-arroz","grupo":"acompanamientos","nombre":"Arroz","emoji":"🍚"},
+  {"id":"acomp-papa","grupo":"acompanamientos","nombre":"Papa","emoji":"🥔"},
+  {"id":"acomp-ensalada","grupo":"acompanamientos","nombre":"Ensalada","emoji":"🥗"},
+
+  {"id":"jugo-mango","grupo":"jugos","nombre":"Jugo de mango","emoji":"🥭"},
+  {"id":"jugo-limonada-panela","grupo":"jugos","nombre":"Limonada de panela","emoji":"🍋"},
+
+  {"id":"esp-churrasco","grupo":"especiales","nombre":"Churrasco","emoji":"⭐","precio":32000},
+  {"id":"esp-pechuga","grupo":"especiales","nombre":"Pechuga a la plancha","emoji":"⭐","precio":22000},
+  {"id":"esp-tabla-mixta","grupo":"especiales","nombre":"Tabla mixta","emoji":"⭐","precio":22000},
+  {"id":"esp-mojarra","grupo":"especiales","nombre":"Mojarra frita","emoji":"⭐","precio":30000},
+
+  {"id":"acompesp-sopa","grupo":"acomp-especial","nombre":"Sopa","emoji":"🥣"},
+  {"id":"acompesp-arroz","grupo":"acomp-especial","nombre":"Arroz","emoji":"🍚"},
+  {"id":"acompesp-francesa","grupo":"acomp-especial","nombre":"Francesa","emoji":"🍟"},
+  {"id":"acompesp-ensalada","grupo":"acomp-especial","nombre":"Ensalada","emoji":"🥗"}
+];
+
+const STORAGE_KEY = 'marilyn_productos_estado';
+
+function fmtPrice(n){
+  return '$' + Math.round(n).toLocaleString('es-CO');
+}
+
+function loadState(){
+  let saved = {};
+  try{
+    saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  }catch(e){ saved = {}; }
+
+  const state = {};
+  PRODUCTOS.forEach(p => {
+    const existing = saved[p.id] || {};
+    state[p.id] = {
+      activo: existing.activo !== undefined ? existing.activo : true,
+      conector: existing.conector || ''
+    };
+  });
+  return state;
+}
+
+function saveState(state){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  const note = document.getElementById('saveNote');
+  note.classList.add('show');
+  clearTimeout(window._saveTimer);
+  window._saveTimer = setTimeout(() => note.classList.remove('show'), 1200);
+  updateStats(state);
+}
+
+let appState = loadState();
+
+function updateStats(state){
+  let activos = 0, inactivos = 0, conectados = 0;
+  PRODUCTOS.forEach(p => {
+    if(state[p.id].activo) activos++; else inactivos++;
+    if(state[p.id].conector.trim()) conectados++;
+  });
+  document.getElementById('statActivos').textContent = activos;
+  document.getElementById('statInactivos').textContent = inactivos;
+  document.getElementById('statConectados').textContent = conectados;
+}
+
+function render(filterText){
+  const container = document.getElementById('groupsContainer');
+  container.innerHTML = '';
+
+  const groupOrder = ['sopas','principios','proteinas','acompanamientos','jugos','especiales','acomp-especial'];
+  const term = (filterText || '').trim().toLowerCase();
+
+  let anyVisible = false;
+
+  groupOrder.forEach(groupKey => {
+    const groupProducts = PRODUCTOS.filter(p => p.grupo === groupKey && (!term || p.nombre.toLowerCase().includes(term)));
+    if(groupProducts.length === 0) return;
+    anyVisible = true;
+
+    const meta = GROUP_LABELS[groupKey];
+    const groupEl = document.createElement('div');
+    groupEl.className = 'group';
+
+    const activeCount = groupProducts.filter(p => appState[p.id].activo).length;
+
+    groupEl.innerHTML = `
+      <div class="group-head">
+        <span>${meta.icon}</span>
+        <h2>${meta.label}</h2>
+        <span class="gcount">${activeCount}/${groupProducts.length} activos</span>
+        <button class="gtoggle" data-group="${groupKey}">activar/desactivar todo el grupo</button>
+      </div>
+      <div class="rows" data-group-rows="${groupKey}"></div>
+    `;
+
+    const rowsWrap = groupEl.querySelector('.rows');
+    groupProducts.forEach(p => {
+      const s = appState[p.id];
+      const row = document.createElement('div');
+      row.className = 'product-row' + (s.activo ? '' : ' disabled');
+      row.dataset.id = p.id;
+      row.innerHTML = `
+        <div class="p-emoji">${p.emoji}</div>
+        <div class="p-info">
+          <div class="p-name">${p.nombre}</div>
+          ${p.precio ? `<div class="p-price">${fmtPrice(p.precio)}</div>` : ''}
+        </div>
+        <div class="p-status ${s.activo ? 'on' : 'off'}">${s.activo ? 'Disponible' : 'Agotado'}</div>
+        <div class="p-connector">
+          <input type="text" placeholder="colocar conector con producto" value="${s.conector ? s.conector.replace(/"/g,'&quot;') : ''}" class="${s.conector ? 'has-value' : ''}" data-conector-id="${p.id}">
+        </div>
+        <label class="switch">
+          <input type="checkbox" data-toggle-id="${p.id}" ${s.activo ? 'checked' : ''}>
+          <span class="slider"></span>
+        </label>
+      `;
+      rowsWrap.appendChild(row);
+    });
+
+    container.appendChild(groupEl);
+  });
+
+  if(!anyVisible){
+    container.innerHTML = '<div class="empty-state">No se encontraron productos con ese nombre.</div>';
+  }
+
+  attachListeners();
+  updateStats(appState);
+}
+
+function attachListeners(){
+  document.querySelectorAll('[data-toggle-id]').forEach(input => {
+    input.addEventListener('change', () => {
+      const id = input.dataset.toggleId;
+      appState[id].activo = input.checked;
+      saveState(appState);
+      render(document.getElementById('searchBox').value);
+    });
+  });
+
+  document.querySelectorAll('[data-conector-id]').forEach(input => {
+    input.addEventListener('input', () => {
+      const id = input.dataset.conectorId;
+      appState[id].conector = input.value;
+      input.classList.toggle('has-value', !!input.value.trim());
+      saveState(appState);
+    });
+  });
+
+  document.querySelectorAll('.gtoggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const groupKey = btn.dataset.group;
+      const groupProducts = PRODUCTOS.filter(p => p.grupo === groupKey);
+      const allActive = groupProducts.every(p => appState[p.id].activo);
+      groupProducts.forEach(p => { appState[p.id].activo = !allActive; });
+      saveState(appState);
+      render(document.getElementById('searchBox').value);
+    });
+  });
+}
+
+document.getElementById('searchBox').addEventListener('input', (e) => {
+  render(e.target.value);
+});
+
+document.getElementById('enableAllBtn').addEventListener('click', () => {
+  PRODUCTOS.forEach(p => appState[p.id].activo = true);
+  saveState(appState);
+  render(document.getElementById('searchBox').value);
+});
+
+document.getElementById('disableAllBtn').addEventListener('click', () => {
+  if(!confirm('¿Desactivar todos los productos del menú? Los clientes no podrán seleccionarlos hasta que los reactives.')) return;
+  PRODUCTOS.forEach(p => appState[p.id].activo = false);
+  saveState(appState);
+  render(document.getElementById('searchBox').value);
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if(!confirm('Esto restablecerá todos los productos a activos y borrará todos los conectores guardados. ¿Continuar?')) return;
+  appState = {};
+  PRODUCTOS.forEach(p => appState[p.id] = { activo: true, conector: '' });
+  saveState(appState);
+  render('');
+});
+
+render('');
+</script>
+
+</body>
+</html>

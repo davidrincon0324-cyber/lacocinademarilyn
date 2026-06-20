@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Cocina de Marilyn - Hamburguesas Artesanales</title>
+    <!-- Conexión al archivo CSS: ahora en css/ -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <!-- Google Fonts: Importa las tipografías 'Inter', 'Montserrat' y 'Playfair Display' (cursiva legible) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navegación -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="assets/images/logo1.png" alt="La Cocina de Marilyn Logo" class="logo-img">
+                <span class="logo-text">La Cocina de Marilyn</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#about">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">La Cocina de Marilyn: El Alma Gastronómica de Cajicá</h1>
+            <h2 class="hero-subtitle">Donde el sabor tradicional colombiano se encuentra con la audacia del sushi y las cajas bento, todo en un ambiente de 5 estrellas.</h2>
+            <div class="hero-buttons">
+                <a href="pages/menu.html" class="btn btn-primary btn-ripple hero-cta" id="btnMenu">Descubre nuestro Menú <i class="fas fa-arrow-right"></i></a>
+                <a href="pages/menu.html" class="btn btn-secondary btn-ripple hero-cta" id="btnOrder">Haz tu Pedido <i class="fas fa-shopping-cart"></i></a>
+            </div>
+            <div class="hero-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>4.8 ★ (1,234 reseñas)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Destacados -->
+    <section id="productos" class="productos">
+        <div class="container">
+            <h2 class="section-title">Nuestras <span class="highlight">Estrellas</span></h2>
+            <p class="section-subtitle">Las hamburguesas más pedidas por nuestros clientes</p>
+            
+            <div class="productos-grid" id="productosGrid">
+                <!-- Producto 1 -->
+                <div class="producto-card" data-name="Clásica">
+                    <div class="producto-img-wrapper">
+                        <img src="assets/images/h11.jpg" alt="Clásica" class="producto-img">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Clásica</h3>
+                        <p>Carne de res, queso cheddar, lechuga, tomate y nuestra salsa secreta.</p>
+                        <div class="producto-footer">
+                            <span class="precio">$12.90</span>
+                            <button class="btn-pedir btn-ripple" disabled aria-disabled="true">Pedir <i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="producto-card" data-name="BBQ Bacon">
+                    <div class="producto-img-wrapper">
+                        <img src="assets/images/bbq1.jpeg" alt="BBQ Bacon" class="producto-img">
+                    </div>
+                    <div class="producto-info">
+                        <h3>BBQ Bacon</h3>
+                        <p>Carne angus, tocino crujiente, cebolla caramelizada y salsa BBQ.</p>
+                        <div class="producto-footer">
+                            <span class="precio">$14.90</span>
+                            <button class="btn-pedir btn-ripple" disabled aria-disabled="true">Pedir <i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="producto-card" data-name="Veggie Supreme">
+                    <div class="producto-img-wrapper">
+                        <img src="assets/images/vegan.png" alt="Veggie Supreme" class="producto-img">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Veggie Supreme</h3>
+                        <p>Hamburguesa de garbanzos, aguacate, lechuga, tomate y salsa vegana.</p>
+                        <div class="producto-footer">
+                            <span class="precio">$11.90</span>
+                            <button class="btn-pedir btn-ripple" disabled aria-disabled="true">Pedir <i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="producto-card" data-name="Picante">
+                    <div class="producto-img-wrapper">
+                        <img src="assets/images/vegan.png" alt="Picante" class="producto-img">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Picante</h3>
+                        <p>Carne de res, jalapeños, queso pepper jack, salsa chipotle y cebolla morada.</p>
+                        <div class="producto-footer">
+                            <span class="precio">$13.90</span>
+                            <button class="btn-pedir btn-ripple" disabled aria-disabled="true">Pedir <i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 5 -->
+                <div class="producto-card" data-name="Veggie Supreme">
+                    <div class="producto-img-wrapper">
+                        <img src="assets/images/vegan.png" alt="Veggie Supreme" class="producto-img">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Veggie Supreme</h3>
+                        <p>Hamburguesa de garbanzos, aguacate, lechuga, tomate y salsa vegana.</p>
+                        <div class="producto-footer">
+                            <span class="precio">$11.90</span>
+                            <button class="btn-pedir btn-ripple" disabled aria-disabled="true">Pedir <i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 6 -->
+                <div class="producto-card" data-name="Veggie Supreme">
+                    <div class="producto-img-wrapper">
+                        <img src="assets/images/vegan.png" alt="Veggie Supreme" class="producto-img">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Veggie Supreme</h3>
+                        <p>Hamburguesa de garbanzos, aguacate, lechuga, tomate y salsa vegana.</p>
+                        <div class="producto-footer">
+                            <span class="precio">$11.90</span>
+                            <button class="btn-pedir btn-ripple" disabled aria-disabled="true">Pedir <i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 class="section-title">Más que una <span class="highlight">hamburguesa</span></h2>
+                    <p>En RESTAURANTE, cada hamburguesa cuenta una historia. Desde 2015, hemos perfeccionado el arte de la hamburguesa artesanal, seleccionando los mejores cortes de carne Angus, horneando nuestro pan diariamente y creando salsas caseras que despiertan los sentidos.</p>
+                    <p>📍 <strong>Calle Sabores #123, Ciudad Gourmet</strong></p>
+                    <p>📞 <strong>+34 912 345 678</strong></p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number" data-count="8">0</span>
+                            <span class="stat-label">Años de experiencia</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-count="50">0</span>
+                            <span class="stat-label">Ingredientes únicos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-count="15000">0</span>
+                            <span class="stat-label">Clientes felices</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="assets/images/chef.jpg" alt="Nuestro chef preparando hamburguesas">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horario y Contacto -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2 class="section-title">Horario y <span class="highlight">Contacto</span></h2>
+            <div class="contacto-grid">
+                <div class="horario-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Horario de atención</h3>
+                    <p><strong>Lunes a Domingo</strong><br>12:00 - 00:00</p>
+                    <div class="horario-detalle">
+                        <p><i class="fas fa-store"></i> Comida en local</p>
+                        <p><i class="fas fa-motorcycle"></i> Delivery hasta 23:30</p>
+                    </div>
+                </div>
+                <div class="contacto-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Contacto rápido</h3>
+                    <p>📞 <strong>+34 912 345 678</strong></p>
+                    <p>✉️ <strong>hola@restaurante.com</strong></p>
+                    <div class="redes-sociales">
+                        <a href="https://www.instagram.com/tastyflow/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/tastyfoodcajica?mibextid=LQQJ4d"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.whatsapp.com/catalog/573045274626/?app_absent=0"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.tiktok.com/@tastyflowcajica"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa -->
+    <section class="mapa-section">
+        <div class="container">
+            <h2 class="section-title">Encuéntranos</h2>
+            <div class="mapa-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.1707362734746!2d-74.03264312496017!3d4.911080195064839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4077330da4c5ad%3A0xaf0390392cc8cc56!2sRESTAURANTE!5e0!3m2!1ses!2sco!4v1777426457556!5m2!1ses!2sco" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reseñas -->
+    <section class="reseñas">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen <span class="highlight">nuestros clientes</span></h2>
+            <div class="reseñas-grid">
+                <div class="reseña-card">
+                    <div class="reseña-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"La mejor hamburguesa que he probado en años. La Clásica es perfecta."</p>
+                    <h4>— Ana García</h4>
+                </div>
+                <div class="reseña-card">
+                    <div class="reseña-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"El pan artesanal y las salsas caseras marcan la diferencia. Volveré sin duda."</p>
+                    <h4>— Carlos López</h4>
+                </div>
+                <div class="reseña-card">
+                    <div class="reseña-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"La Veggie Supreme es increíble. Un lugar que toda la ciudad debería conocer."</p>
+                    <h4>— Marta Ruiz</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/logo.png" alt="RESTAURANTE" class="footer-logo">
+                    <p>Sabor que atrapa, calidad que enamora.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Recibe ofertas exclusivas</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Tu email" required>
+                        <button type="submit">Suscribir</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RESTAURANTE - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" class="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Conexión al archivo JavaScript: ahora en js/ -->
+    <!-- Se utiliza para: -->
+    <!-- 1. Menú hamburguesa responsivo (abrir/cerrar en móvil) -->
+    <!-- 2. Efecto ripple (ondas de clic) en los botones -->
+    <!-- 3. Animación de conteo en las estadísticas de la sección 'Sobre Nosotros' -->
+    <!-- 4. Scroll suave entre secciones (navegación interna) -->
+    <!-- 5. Botón 'Volver al inicio' (scroll to top) -->
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+🍔 RESTAURANTE - Página Web
+================================
+
+¡Gracias por usar esta plantilla! Sigue estas instrucciones para personalizar tu web.
+
+📁 ESTRUCTURA DE CARPETAS:
+--------------------------
+restaurante-web/
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── main.js
+├── images/
+│   ├── hero-bg.jpg       (Fondo del hero - recomendado: 1920x1080px)
+│   ├── hamburguesa1.jpg  (Clásica - 600x400px)
+│   ├── hamburguesa2.jpg  (BBQ Bacon - 600x400px)
+│   ├── hamburguesa3.jpg  (Veggie Supreme - 600x400px)
+│   ├── hamburguesa4.jpg  (Picante - 600x400px)
+│   ├── logo.png          (Logo circular - 200x200px)
+│   └── chef.jpg          (Foto del chef/local - 800x600px)
+│
+└── README.txt
+
+🖼️ CÓMO CAMBIAR LAS IMÁGENES:
+------------------------------
+1. Abre la carpeta "images"
+2. Reemplaza cada archivo placeholder con tu imagen real
+3. Mantén EXACTAMENTE el mismo nombre de archivo
+4. Si cambias nombres, actualiza las rutas en index.html
+
+📝 CÓMO MODIFICAR TEXTOS Y PRECIOS:
+-----------------------------------
+Abre "index.html" y busca:
+- Nombres de hamburguesas: <h3> dentro de .producto-card
+- Precios: <span class="precio">
+- Horarios y dirección: En sección "contacto"
+- Texto del hero: .hero-title y .hero-subtitle
+
+🎨 CÓMO CAMBIAR COLORES Y ESTILOS:
+---------------------------------
+Abre "css/styles.css" y modifica las variables CSS al inicio:
+:root {
+    --primary: #FF4B2B;    (color principal)
+    --secondary: #FFC107;   (color secundario)
+    --dark: #1A1A1A;        (fondo oscuro)
+}
+
+⚙️ REQUISITOS TÉCNICOS:
+-----------------------
+- Navegador moderno (Chrome, Firefox, Safari, Edge)
+- Servidor web local o hosting (subir todos los archivos)
+- No requiere dependencias externas (usa CDN de FontAwesome)
+
+🚀 CÓMO SUBIRLA A INTERNET:
+---------------------------
+1. Comprime toda la carpeta "restaurante-web"
+2. Súbela a tu hosting (cPanel, Netlify, GitHub Pages, etc.)
+3. Asegura que index.html esté en la raíz
+
+📞 SOPORTE:
+----------
+Si necesitas ayuda:
+- Revisa que todas las rutas de imágenes sean correctas
+- Abre la consola del navegador (F12) para ver errores
+
+¡Disfruta de tu nueva web de RESTAURANTE! 🍔
